@@ -151,7 +151,7 @@ $(function () {
      *         bounds of the grid, returns false otherwise.
      */
     function validPosition(row, col){
-
+        return row >= 0 && row < NUM_ROWS && col >= 0 && col < NUM_COLS;
     }
 
 
@@ -163,8 +163,17 @@ $(function () {
      *          object to match its x and y coordinates on the HTML canvas.
      */
     function populateGameGrid(grid){
-
+        for(i = 0; i < NUM_ROWS; i++)
+        {
+            for(j = 0; j < NUM_COLS; j++)
+            {
+                grid[i][j] = new Cell();
+                grid[i][j].xPosition = j;
+                grid[i][j].yPosition = i;
+            }
+        }
     }
+    
 
 
     /** 
@@ -246,8 +255,30 @@ $(function () {
      *          that should be drawn.  You will use getCanvas() to update the canvas
      */
     function drawPattern(patternName, grid, row, col) {
-
+        if(patternName == "Block" ||
+           patternName == "Beehive" ||
+           patternName == "Loaf" ||
+           patternName == "Boat")
+        {
+            drawStillLife(patternName, grid, row, col);
+        }
+        else if(
+           patternName == "Blinker" ||
+           patternName == "Toad" ||
+           patternName == "Beacon" ||
+           patternName == "Pulsar")
+        {
+            drawOscillator(patternName, grid, row, col);
+        }
+        else if(
+           patternName == "Glider" ||
+           patternName == "Lwss")
+        {
+            drawSpaceship(patternName, grid, row, col);
+        }
+        
     }
+    
 
 
     /*
@@ -312,8 +343,70 @@ $(function () {
      *          colored). 
      */
     function drawSpaceship(patternName, grid, row, col) {
-
+        if(patternName == "Glider")
+        {
+            if(validPosition(row + 2, col))
+            {
+                grid[row+2][col].dead = false;
+            }
+            if(validPosition(row, col+1))
+            {
+                grid[row][col+1].dead = false;
+            }
+            if(validPosition(row + 2, col+1))
+            {
+                grid[row+2][col+1].dead = false;
+            }
+            if(validPosition(row+1, col+2))
+            {
+                grid[row+1][col+2].dead = false;
+            }
+            if(validPosition(row+2, col+2))
+            {
+                grid[row+2][col+2].dead = false;
+            }
+        }
+        if(patternName == "Lwss")
+        {
+            if(validPosition(row, col))
+            {
+                grid[row][col].dead = false;
+            }
+            if(validPosition(row+2, col))
+            {
+                grid[row+2][col].dead = false;
+            }
+            if(validPosition(row+3, col+1))
+            {
+                grid[row+3][col+1].dead = false;
+            }
+            if(validPosition(row+3, col+2))
+            {
+                grid[row+3][col+2].dead = false;
+            }
+            if(validPosition(row, col+3))
+            {
+                grid[row][col+3].dead = false;
+            }
+            if(validPosition(row+3, col+3))
+            {
+                grid[row+3][col+3].dead = false;
+            }
+            if(validPosition(row+1, col+4))
+            {
+                grid[row+1][col+4].dead = false;
+            }
+            if(validPosition(row+2, col+4))
+            {
+                grid[row+2][col+4].dead = false;
+            }
+            if(validPosition(row+3, col+4))
+            {
+                grid[row+3][col+4].dead = false;
+            }
+        }
     }
+    
 
 
 
