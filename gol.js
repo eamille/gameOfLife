@@ -255,24 +255,24 @@ $(function () {
      *          that should be drawn.  You will use getCanvas() to update the canvas
      */
     function drawPattern(patternName, grid, row, col) {
-        if(patternName == "Block" ||
-           patternName == "Beehive" ||
-           patternName == "Loaf" ||
-           patternName == "Boat")
+        if(patternName === "Block" ||
+           patternName === "Beehive" ||
+           patternName === "Loaf" ||
+           patternName === "Boat")
         {
             drawStillLife(patternName, grid, row, col);
         }
         else if(
-           patternName == "Blinker" ||
-           patternName == "Toad" ||
-           patternName == "Beacon" ||
-           patternName == "Pulsar")
+           patternName === "Blinker" ||
+           patternName === "Toad" ||
+           patternName === "Beacon" ||
+           patternName === "Pulsar")
         {
             drawOscillator(patternName, grid, row, col);
         }
         else if(
-           patternName == "Glider" ||
-           patternName == "Lwss")
+           patternName === "Glider" ||
+           patternName === "Lwss")
         {
             drawSpaceship(patternName, grid, row, col);
         }
@@ -343,7 +343,7 @@ $(function () {
      *          colored). 
      */
     function drawSpaceship(patternName, grid, row, col) {
-        if(patternName == "Glider")
+        if(patternName === "Glider")
         {
             if(validPosition(row + 2, col))
             {
@@ -366,7 +366,7 @@ $(function () {
                 grid[row+2][col+2].dead = false;
             }
         }
-        if(patternName == "Lwss")
+        if(patternName === "Lwss")
         {
             if(validPosition(row, col))
             {
